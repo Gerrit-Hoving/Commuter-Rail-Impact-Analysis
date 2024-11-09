@@ -20,24 +20,50 @@ hpi_national <- hpi_national %>%
   rename(GEOID = tract)
 ```
 
+# Northstar Line - MN
+
 ```{r}
 # Get data on relevent census tracts from US census
 options(tigris_use_cache = TRUE)
 
-# Define the counties in the seven-county metro area for Minneapolis-St. Paul
-metro_counties <- c("Anoka", "Carver", "Dakota", "Hennepin", "Ramsey", "Scott", "Washington")
 
 northstar_counties <- c("Anoka", "Sherburne", "Wright", "Hennepin")
 
-# Specify the state code for Minnesota
-state_code <- "27" 
-
 # Get the median household income data for each census tract in the specified counties
-census_data <- map_df(northstar_counties, function(county) {
+mn_census_data <- map_df(northstar_counties, function(county) {
   get_acs(
     geography = "tract",
     variables = "B19013_001", # Median household income variable
-    state = state_code,
+    state = "27", # MN FIPS code
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+
+
+wegostar_counties <- c("Davidson", "Sumner", "Wilson")
+
+# Get the median household income data for each census tract in the specified counties
+tn_census_data <- map_df(wegostar_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B19013_001", # Median household income variable
+    state = "47", # TN FIPS code
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+
+frontrunner_counties <- c("Salt Lake", "Utah", "Weber", "Morgan", "Davis")
+
+# Get the median household income data for each census tract in the specified counties
+ut_census_data <- map_df(frontrunner_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B19013_001", # Median household income variable
+    state = "49", # MN FIPS code
     county = county,
     geometry = TRUE,
     year = 2022
@@ -46,49 +72,105 @@ census_data <- map_df(northstar_counties, function(county) {
 ```
 
 ```{r}
-# Perform a left join to merge hpi_national onto income_data based on GEOID
-hpi_map <- census_data %>%
+# Left join on GEOID
+northstar_map <- mn_census_data %>%
   left_join(hpi_national, by = "GEOID")
 
 # Test whether join was successful
-plot(hpi_map["hpi2000"])
+plot(northstar_map["hpi2000"])
+
+# Left join on GEOID
+wegostar_map <- tn_census_data %>%
+  left_join(hpi_national, by = "GEOID")
+
+# Test whether join was successful
+plot(wegostar_map["hpi2000"])
+
+# Left join on GEOID
+frontrunner_map <- ut_census_data %>%
+  left_join(hpi_national, by = "GEOID")
+
+# Test whether join was successful
+plot(frontrunner_map["hpi2000"])
 
 ```
 
 ```{r}
 # Read commuter line shapefile
-line <- st_read("./data/Alignments By Route.shp") %>% 
+northstar_line <- st_read("./data/Alignments By Route.shp") %>% 
   filter(NameTransi == "Northstar")
 
 # Read station shapefile
-stations <- st_read("./data/Stations By Route.shp") %>% 
-  filter(Serves == "Northstar")
+northstar_stations <- st_read("./data/Stations By Route.shp") %>% 
+  filter(str_detect(Serves, 'Northstar'))
 
 # Plot hpi data and add shapefiles
 ggplot() +
-  geom_sf(data = hpi_map, aes(fill = hpi2000), color = NA) +  # Plot the income data
+  geom_sf(data = northstar_map, aes(fill = hpi2000), color = NA) +
   scale_fill_viridis_c(option = "plasma", name = "HPI") +
-  geom_sf(data = line, color = "blue", size = 1) +       # Add lines
-  geom_sf(data = stations, color = "red", size = 2) +      # Add points
+  geom_sf(data = northstar_line, color = "blue", size = 1) +       
+  geom_sf(data = northstar_stations, color = "red", size = 2) +      
   labs(title = "HPI and Northstar Rail Line",
        subtitle = "Minneapolis-St. Paul Metro Area",
+       caption = "Source: ACS 2022 and FHFA") +
+  theme_minimal()
+
+
+# Read commuter line shapefile
+wegostar_line <- st_read("./data/Routes.shp") %>% 
+  filter(LineName	== "WEGO STAR")
+
+# Read station shapefile
+wegostar_stations <- st_read("./data/Stops.shp") %>% 
+  filter(str_detect(RoutesServ, '90'))
+
+# Plot hpi data and add shapefiles
+ggplot() +
+  geom_sf(data = wegostar_map, aes(fill = hpi2000), color = NA) +
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
+  geom_sf(data = wegostar_line, color = "blue", size = 1) +       
+  geom_sf(data = wegostar_stations, color = "red", size = 2) +      
+  labs(title = "HPI and WeGo Star Rail Line",
+       subtitle = "Nashville Metro Area",
+       caption = "Source: ACS 2022 and FHFA") +
+  theme_minimal()
+
+
+# Read commuter line shapefile
+frontrunner_line <- st_read("./data/UTA_FrontRunner_Commuter_Rail_Route_Centerline.shp") %>%
+  filter()
+
+# Read station shapefile
+frontrunner_stations <- st_read("./data/FrontRunner_Commuter_Rail_Stations.shp") %>% 
+  filter()
+
+# Plot hpi data and add shapefiles
+ggplot() +
+  geom_sf(data = frontrunner_map, aes(fill = hpi2000), color = NA) +
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
+  geom_sf(data = frontrunner_line, color = "blue", size = 1) +       
+  geom_sf(data = frontrunner_stations, color = "red", size = 2) +      
+  labs(title = "HPI and FrontRunner Rail Line",
+       subtitle = "Salt Lake City Metro Area",
        caption = "Source: ACS 2022 and FHFA") +
   theme_minimal()
 ```
 
 
+
+
 ```{r}
 # Make sure stations and tracts have the same CRS
-if (st_crs(stations) != st_crs(income_data_joined)) {
-  stations <- st_transform(stations, st_crs(income_data_joined))
+if (st_crs(stations) != st_crs(northstar_map)) {
+  stations <- st_transform(stations, st_crs(northstar_map))
 }
 
 # Calculate the distance from each tract to all stations
-distance_matrix <- st_distance(income_data_joined, stations)
-income_data_joined$distance_to_station <- apply(distance_matrix, 1, min)
+distance_matrix <- st_distance(northstar_map, stations)
+northstar_map$distance_to_station <- apply(distance_matrix, 1, min)
 
 # Classify data based on proximity to stations and time of Northstar construction
-income_data_joined <- income_data_joined %>%
+northstar_map <- northstar_map %>%
   mutate(
     proximity = case_when(
       distance_to_station <= 500 ~ "Within 0.5 km",
@@ -108,7 +190,7 @@ income_data_joined <- income_data_joined %>%
   filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
 
 # Create a strip plot of HPI 
-ggplot(income_data_joined, aes(x = case, y = annual_change, 
+ggplot(northstar_map, aes(x = case, y = annual_change, 
                                color = distance_to_station)) +
   geom_jitter(width = 0.2, alpha = 0.5) +
   geom_violin(fill = "#00000000") +
@@ -122,7 +204,7 @@ ggplot(income_data_joined, aes(x = case, y = annual_change,
   theme_minimal()
 
 # Create scatter plot and lines of best fit for distance vs annual change in HPI
-ggplot(income_data_joined) + 
+ggplot(northstar_map) + 
   geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
              alpha = 0.2) +
   geom_smooth(aes(x = distance_to_station, y = annual_change, 
@@ -143,8 +225,10 @@ ggplot(income_data_joined) +
 library(gganimate)
 library(sf)
 
-p <- ggplot(hpi_map) +
+p <- ggplot(northstar_map %>% filter(year >= 2000)) +
   geom_sf(aes(fill = hpi), color = NA) +
+  geom_sf(data = line, color = "blue", size = 1) +       
+  geom_sf(data = stations, color = "red", size = 2) +     
   scale_fill_viridis_c(option = "plasma", name = "Median Income") +
   labs(title = "HPI",
        subtitle = "Minneapolis-St. Paul Seven-County Metro Area",
