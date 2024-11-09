@@ -1,0 +1,173 @@
+---
+title: ""
+author: "Gerrit Hoving"
+output:
+  hmtl_document: default
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE) 
+```
+
+```{r include=FALSE}
+library(tidyverse)
+library(tidycensus)
+
+# Reads forecast and city information data sets
+#zhvi <- read_csv("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/Neighborhood_zhvi.csv")
+
+#city_zhvi <- read_csv("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/City_zhvi.csv")
+
+hpi_national <- read_csv("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/hpi_at_bdl_tract.csv")
+hpi_national <- hpi_national %>%
+  rename(GEOID = tract)
+```
+
+```{r}
+library(tidycensus)
+options(tigris_use_cache = TRUE)
+
+# Define the counties in the seven-county metro area for Minneapolis-St. Paul
+metro_counties <- c("Anoka", "Carver", "Dakota", "Hennepin", "Ramsey", "Scott", "Washington")
+
+northstar_counties <- c("Anoka", "Sherburne", "Wright", "Hennepin")
+
+# Specify the state code for Minnesota
+state_code <- "27" # Minnesota FIPS code
+
+# Get the median household income data for each census tract in the specified counties
+income_data <- map_df(northstar_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B19013_001", # Median household income variable
+    state = state_code,
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+```
+
+```{r}
+hpi_national <- hpi_national %>%
+  filter(year >= 2000)
+
+# Perform a left join to merge hpi_national onto income_data based on GEOID
+income_data_joined <- income_data %>%
+  left_join(hpi_national, by = "GEOID")
+  
+```
+
+```{r}
+plot(income_data_joined["hpi2000"])
+```
+```{r}
+# Read line shapefile (e.g., a railway line)
+line <- st_read("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/RouteData/Alignments By Route.shp") %>% 
+  filter(NameTransi == "Northstar")
+
+# Read point shapefile (e.g., train stations)
+stations <- st_read("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/RouteData/Stations By Route.shp") %>% 
+  filter(Serves == "Northstar")
+
+# Plot income data and add shapefiles
+ggplot() +
+  geom_sf(data = income_data_joined, aes(fill = hpi2000), color = NA) +  # Plot the income data
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
+  geom_sf(data = line, color = "blue", size = 1) +       # Add lines
+  geom_sf(data = stations, color = "red", size = 2) +      # Add points
+  labs(title = "HPI and Northstar Rail Line",
+       subtitle = "Minneapolis-St. Paul Metro Area",
+       caption = "Source: ACS 2022") +
+  theme_minimal()
+```
+
+
+```{r}
+# Ensure that the stations and tracts have the same CRS
+if (st_crs(stations) != st_crs(income_data_joined)) {
+  stations <- st_transform(stations, st_crs(income_data_joined))
+}
+
+# Step 1: Calculate the distance from each tract to all stations
+distance_matrix <- st_distance(income_data_joined, stations)
+
+# Step 2: Extract the minimum distance for each tract
+income_data_joined$distance_to_station <- apply(distance_matrix, 1, min)
+
+# Step 3: Classify tracts based on proximity to stations
+income_data_joined <- income_data_joined %>%
+  mutate(
+    proximity = case_when(
+      distance_to_station <= 500 ~ "Within 0.5 km",
+      distance_to_station <= 10000 ~ "1 to 20 km"
+    ),
+    timing = case_when(
+      year < 2010 ~ "Before Northstar",
+      year >= 2010 ~ "After Northstar"
+    ), 
+    case = case_when(
+      distance_to_station <= 500 & year < 2010 ~ "Within 0.5 km, before",
+      distance_to_station <= 500 & year >= 2010 ~ "Within 0.5 km, after",
+      distance_to_station <= 10000 & year < 2010 ~ "0.5 to 10 km, before",
+      distance_to_station <= 10000 & year >= 2010 ~ "0.5 to 10 km, after"
+    ),
+  ) %>%
+  filter(!is.na(proximity)) # Remove tracts that are more than 20 km away
+
+# Step 4: Create a strip plot of HPI for the two groups
+ggplot(income_data_joined, aes(x = case, y = annual_change, 
+                               color = distance_to_station)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_violin(fill = "#00000000") +
+  labs(
+    title = "HPI Comparison Based on Proximity to Stations",
+    x = "Proximity to Station",
+    y = "HPI Annual Change",
+    caption = "Source: ACS 2022"
+  ) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+
+ggplot(income_data_joined) + 
+  geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
+             alpha = 0.2) +
+  geom_smooth(aes(x = distance_to_station, y = annual_change, 
+                  color = timing, group = timing), 
+              method = "lm", se = FALSE) +
+  labs(
+    title = "Annual Change vs Distance to Station",
+    x = "Distance to Station (m)",
+    y = "Annual Change in Housing Price Index",
+    color = "Timing"
+  ) +
+  theme_minimal()
+```
+
+
+
+
+
+```{r}
+library(gganimate)
+library(sf)
+
+p <- ggplot(income_data_joined) +
+  geom_sf(aes(fill = hpi), color = NA) +
+  scale_fill_viridis_c(option = "plasma", name = "Median Income") +
+  labs(title = "HPI",
+       subtitle = "Minneapolis-St. Paul Seven-County Metro Area",
+       caption = "Year: {frame_time}") +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  transition_time(year)  # Set the transition to use the 'year' variable
+
+# Display the animated plot
+animate(p, duration = 11, fps = 2, width = 800, height = 600)
+```
+
+
+
+
+
