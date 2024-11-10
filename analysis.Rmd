@@ -20,7 +20,6 @@ hpi_national <- hpi_national %>%
   rename(GEOID = tract)
 ```
 
-# Northstar Line - MN
 
 ```{r}
 # Get data on relevent census tracts from US census
@@ -161,8 +160,8 @@ ggplot() +
 
 ```{r}
 # Make sure stations and tracts have the same CRS
-if (st_crs(stations) != st_crs(northstar_map)) {
-  stations <- st_transform(stations, st_crs(northstar_map))
+if (st_crs(northstar_stations) != st_crs(northstar_map)) {
+  northstar_stations <- st_transform(northstar_stations, st_crs(northstar_map))
 }
 
 # Calculate the distance from each tract to all stations
@@ -219,26 +218,182 @@ ggplot(northstar_map) +
   theme_minimal()
 ```
 
+# WeGo Star
+
+```{r}
+# Make sure stations and tracts have the same CRS
+if (st_crs(wegostar_stations) != st_crs(wegostar_map)) {
+  wegostar_stations <- st_transform(wegostar_stations, st_crs(wegostar_map))
+}
+
+# Calculate the distance from each tract to all stations
+distance_matrix <- st_distance(wegostar_map, wegostar_stations)
+wegostar_map$distance_to_station <- apply(distance_matrix, 1, min)
+
+# Classify data based on proximity to stations and time of WeGo Star construction
+wegostar_map <- wegostar_map %>%
+  mutate(
+    proximity = case_when(
+      distance_to_station <= 500 ~ "Within 0.5 km",
+      distance_to_station <= 10000 ~ "1 to 20 km"
+    ),
+    timing = case_when(
+      year < 2007 ~ "Before WeGo Star",
+      year >= 2007 ~ "After WeGo Star"
+    ), 
+    case = case_when(
+      distance_to_station <= 500 & year < 2007 ~ "Within 0.5 km, before",
+      distance_to_station <= 500 & year >= 2007 ~ "Within 0.5 km, after",
+      distance_to_station <= 10000 & year < 2007 ~ "0.5 to 10 km, before",
+      distance_to_station <= 10000 & year >= 2007 ~ "0.5 to 10 km, after"
+    ),
+  ) %>%
+  filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
+
+# Create a strip plot of HPI 
+ggplot(wegostar_map, aes(x = case, y = annual_change, 
+                               color = distance_to_station)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_violin(fill = "#00000000") +
+  labs(
+    title = "HPI Comparison Based on Proximity to Stations",
+    x = "Proximity to Station",
+    y = "HPI Annual Change",
+    caption = "Source: ACS 2022"
+  ) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+# Create scatter plot and lines of best fit for distance vs annual change in HPI
+ggplot(wegostar_map) + 
+  geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
+             alpha = 0.2) +
+  geom_smooth(aes(x = distance_to_station, y = annual_change, 
+                  color = timing, group = timing), 
+              method = "lm", se = FALSE) +
+  labs(
+    title = "Annual Change vs Distance to Station",
+    x = "Distance to Station (m)",
+    y = "Annual Change in Housing Price Index",
+    color = "Timing"
+  ) +
+  theme_minimal()
+```
+
+# Frontrunner
+
+```{r}
+# Make sure stations and tracts have the same CRS
+if (st_crs(frontrunner_stations) != st_crs(frontrunner_map)) {
+  frontrunner_stations <- st_transform(frontrunner_stations, st_crs(frontrunner_map))
+}
+
+# Calculate the distance from each tract to all stations
+distance_matrix <- st_distance(frontrunner_map, frontrunner_stations)
+frontrunner_map$distance_to_station <- apply(distance_matrix, 1, min)
+
+# Classify data based on proximity to stations and time of Frontrunner construction
+frontrunner_map <- frontrunner_map %>%
+  mutate(
+    proximity = case_when(
+      distance_to_station <= 500 ~ "Within 0.5 km",
+      distance_to_station <= 10000 ~ "1 to 20 km"
+    ),
+    timing = case_when(
+      year < 2010 ~ "Before Frontrunner",
+      year >= 2010 ~ "After Frontrunner"
+    ), 
+    case = case_when(
+      distance_to_station <= 500 & year < 2010 ~ "Within 0.5 km, before",
+      distance_to_station <= 500 & year >= 2010 ~ "Within 0.5 km, after",
+      distance_to_station <= 10000 & year < 2010 ~ "0.5 to 10 km, before",
+      distance_to_station <= 10000 & year >= 2010 ~ "0.5 to 10 km, after"
+    ),
+  ) %>%
+  filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
+
+# Create a strip plot of HPI 
+ggplot(frontrunner_map, aes(x = case, y = annual_change, 
+                               color = distance_to_station)) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  geom_violin(fill = "#00000000") +
+  labs(
+    title = "HPI Comparison Based on Proximity to Stations",
+    x = "Proximity to Station",
+    y = "HPI Annual Change",
+    caption = "Source: ACS 2022"
+  ) +
+  scale_color_viridis_c() +
+  theme_minimal()
+
+# Create scatter plot and lines of best fit for distance vs annual change in HPI
+ggplot(frontrunner_map) + 
+  geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
+             alpha = 0.2) +
+  geom_smooth(aes(x = distance_to_station, y = annual_change, 
+                  color = timing, group = timing), 
+              method = "lm", se = FALSE) +
+  labs(
+    title = "Annual Change vs Distance to Station",
+    x = "Distance to Station (m)",
+    y = "Annual Change in Housing Price Index",
+    color = "Timing"
+  ) +
+  theme_minimal()
+```
+
 
 
 ```{r}
 library(gganimate)
 library(sf)
 
-p <- ggplot(northstar_map %>% filter(year >= 2000)) +
+p1 <- ggplot(northstar_map %>% filter(year >= 2000)) +
   geom_sf(aes(fill = hpi), color = NA) +
-  geom_sf(data = line, color = "blue", size = 1) +       
-  geom_sf(data = stations, color = "red", size = 2) +     
-  scale_fill_viridis_c(option = "plasma", name = "Median Income") +
+  geom_sf(data = northstar_line, color = "blue", size = 1) +       
+  geom_sf(data = northstar_stations, color = "red", size = 2) +     
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
   labs(title = "HPI",
-       subtitle = "Minneapolis-St. Paul Seven-County Metro Area",
+       subtitle = "Minneapolis-St. Paul  Metro Area",
        caption = "Year: {frame_time}") +
   theme_minimal() +
   theme(axis.text = element_blank(), axis.ticks = element_blank()) +
   transition_time(year)  # Set the transition to use the 'year' variable
 
 # Display the animated plot
-animate(p, duration = 11, fps = 2, width = 800, height = 600)
+animate(p1, duration = 11, fps = 2, width = 800, height = 600)
+
+
+p2 <- ggplot(wegostar_map %>% filter(year >= 2000)) +
+  geom_sf(aes(fill = hpi), color = NA) +
+  geom_sf(data = wegostar_line, color = "blue", size = 1) +       
+  geom_sf(data = wegostar_stations, color = "red", size = 2) +     
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
+  labs(title = "HPI",
+       subtitle = "Nashville Metro Area",
+       caption = "Year: {frame_time}") +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  transition_time(year)  # Set the transition to use the 'year' variable
+
+# Display the animated plot
+animate(p2, duration = 11, fps = 2, width = 800, height = 600)
+
+
+p3 <- ggplot(frontrunner_map %>% filter(year >= 2000)) +
+  geom_sf(aes(fill = hpi), color = NA) +
+  geom_sf(data = frontrunner_line, color = "blue", size = 1) +       
+  geom_sf(data = frontrunner_stations, color = "red", size = 2) +     
+  scale_fill_viridis_c(option = "plasma", name = "HPI") +
+  labs(title = "HPI",
+       subtitle = "Salt Lake City Metro Area",
+       caption = "Year: {frame_time}") +
+  theme_minimal() +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) +
+  transition_time(year)  # Set the transition to use the 'year' variable
+
+# Display the animated plot
+animate(p3, duration = 11, fps = 2, width = 800, height = 600)
 ```
 
 
