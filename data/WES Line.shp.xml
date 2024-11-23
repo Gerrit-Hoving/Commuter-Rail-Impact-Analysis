@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20241122</CreaDate>
+		<CreaTime>21383100</CreaTime>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<SyncOnce>FALSE</SyncOnce>
+		<DataProperties>
+			<itemProps>
+				<itemName Sync="TRUE">WES Line</itemName>
+				<nativeExtBox>
+					<westBL Sync="TRUE">-156.689757</westBL>
+					<eastBL Sync="TRUE">-59.927234</eastBL>
+					<southBL Sync="TRUE">14.672256</southBL>
+					<northBL Sync="TRUE">64.926143</northBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</nativeExtBox>
+				<imsContentType Sync="TRUE">002</imsContentType><itemSize Sync="TRUE">0.000</itemSize><itemLocation><linkage Sync="TRUE">file://\\DESKTOP-UJ6FSHC\C$\Users\Gerrit\Documents\ArcGIS\Projects\Local Commuter Rail History Final Project\RouteData\WES Line.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></itemLocation></itemProps>
+			<coordRef>
+				<type Sync="TRUE">Geographic</type>
+				<geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn>
+				<csUnits Sync="TRUE">Angular Unit: Degree (0.017453)</csUnits>
+				<peXml Sync="TRUE">&lt;GeographicCoordinateSystem xsi:type='typens:GeographicCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/3.2.0'&gt;&lt;WKT&gt;GEOGCS[&amp;quot;GCS_WGS_1984&amp;quot;,DATUM[&amp;quot;D_WGS_1984&amp;quot;,SPHEROID[&amp;quot;WGS_1984&amp;quot;,6378137.0,298.257223563]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433],AUTHORITY[&amp;quot;EPSG&amp;quot;,4326]]&lt;/WKT&gt;&lt;XOrigin&gt;-400&lt;/XOrigin&gt;&lt;YOrigin&gt;-400&lt;/YOrigin&gt;&lt;XYScale&gt;11258999068426.238&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;8.983152841195215e-09&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;LeftLongitude&gt;-180&lt;/LeftLongitude&gt;&lt;WKID&gt;4326&lt;/WKID&gt;&lt;LatestWKID&gt;4326&lt;/LatestWKID&gt;&lt;/GeographicCoordinateSystem&gt;</peXml>
+			</coordRef>
+			<lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx\ExportFeatures" Date="20241123" Time="130627">ExportFeatures North_American_Rail_Network_Lines "C:\Users\Gerrit\Documents\ArcGIS\Projects\Local Commuter Rail History Final Project\RouteData\WES Line.shp" "TRKRGHTS1 = 'WES'" NOT_USE_ALIAS "FRAARCID "FRAARCID" true true false 10 Long 0 10,First,#,North_American_Rail_Network_Lines,FRAARCID,-1,-1;FRFRANODE "FRFRANODE" true true false 10 Long 0 10,First,#,North_American_Rail_Network_Lines,FRFRANODE,-1,-1;TOFRANODE "TOFRANODE" true true false 10 Long 0 10,First,#,North_American_Rail_Network_Lines,TOFRANODE,-1,-1;STFIPS "STFIPS" true true false 2 Text 0 0,First,#,North_American_Rail_Network_Lines,STFIPS,0,1;CNTYFIPS "CNTYFIPS" true true false 3 Text 0 0,First,#,North_American_Rail_Network_Lines,CNTYFIPS,0,2;STCNTYFIPS "STCNTYFIPS" true true false 5 Text 0 0,First,#,North_American_Rail_Network_Lines,STCNTYFIPS,0,4;STATEAB "STATEAB" true true false 2 Text 0 0,First,#,North_American_Rail_Network_Lines,STATEAB,0,1;COUNTRY "COUNTRY" true true false 2 Text 0 0,First,#,North_American_Rail_Network_Lines,COUNTRY,0,1;FRADISTRCT "FRADISTRCT" true true false 5 Long 0 5,First,#,North_American_Rail_Network_Lines,FRADISTRCT,-1,-1;RROWNER1 "RROWNER1" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,RROWNER1,0,3;RROWNER2 "RROWNER2" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,RROWNER2,0,3;RROWNER3 "RROWNER3" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,RROWNER3,0,3;TRKRGHTS1 "TRKRGHTS1" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS1,0,3;TRKRGHTS2 "TRKRGHTS2" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS2,0,3;TRKRGHTS3 "TRKRGHTS3" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS3,0,3;TRKRGHTS4 "TRKRGHTS4" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS4,0,3;TRKRGHTS5 "TRKRGHTS5" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS5,0,3;TRKRGHTS6 "TRKRGHTS6" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS6,0,3;TRKRGHTS7 "TRKRGHTS7" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS7,0,3;TRKRGHTS8 "TRKRGHTS8" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS8,0,3;TRKRGHTS9 "TRKRGHTS9" true true false 4 Text 0 0,First,#,North_American_Rail_Network_Lines,TRKRGHTS9,0,3;DIVISION "DIVISION" true true false 100 Text 0 0,First,#,North_American_Rail_Network_Lines,DIVISION,0,99;SUBDIV "SUBDIV" true true false 100 Text 0 0,First,#,North_American_Rail_Network_Lines,SUBDIV,0,99;BRANCH "BRANCH" true true false 100 Text 0 0,First,#,North_American_Rail_Network_Lines,BRANCH,0,99;YARDNAME "YARDNAME" true true false 30 Text 0 0,First,#,North_American_Rail_Network_Lines,YARDNAME,0,29;PASSNGR "PASSNGR" true true false 1 Text 0 0,First,#,North_American_Rail_Network_Lines,PASSNGR,0,254;STRACNET "STRACNET" true true false 1 Text 0 0,First,#,North_American_Rail_Network_Lines,STRACNET,0,254;TRACKS "TRACKS" true true false 10 Long 0 10,First,#,North_American_Rail_Network_Lines,TRACKS,-1,-1;NET "NET" true true false 1 Text 0 0,First,#,North_American_Rail_Network_Lines,NET,0,254;MILES "MILES" true true false 19 Double 0 0,First,#,North_American_Rail_Network_Lines,MILES,-1,-1;KM "KM" true true false 19 Double 0 0,First,#,North_American_Rail_Network_Lines,KM,-1,-1;TIMEZONE "TIMEZONE" true true false 1 Text 0 0,First,#,North_American_Rail_Network_Lines,TIMEZONE,0,254" #</Process></lineage></DataProperties>
+		<SyncDate>20241123</SyncDate>
+		<SyncTime>13062700</SyncTime>
+		<ModDate>20241123</ModDate>
+		<ModTime>13062700</ModTime>
+	</Esri>
+	<mdChar>
+		<CharSetCd value="004">
+		</CharSetCd>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd value="005">
+		</ScopeCd>
+	</mdHrLv>
+	<mdContact>
+		<rpIndName>Federal Railroad Administration (FRA) GIS Office</rpIndName>
+		<rpOrgName>Federal Railroad Administration (FRA)</rpOrgName>
+		<rpPosName>GIS Program Manager</rpPosName>
+		<rpCntInfo>
+			<cntAddress addressType="both">
+				<delPoint>1200 New Jersey Ave. SE</delPoint>
+				<city>Washington</city>
+				<adminArea>DC</adminArea>
+				<postCode>20590</postCode>
+				<country>United States</country>
+				<eMailAdd>FRAGIS@dot.gov</eMailAdd>
+			</cntAddress>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007">
+			</RoleCd>
+		</role>
+	</mdContact>
+	<mdDateSt>2024-10-16</mdDateSt>
+	<distInfo>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+				<rpPosName>NTAD Program Manager</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>none</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>1200 New Jersey Ave. SE</delPoint>
+						<city>Washington</city>
+						<adminArea>DC</adminArea>
+						<postCode>20590</postCode>
+						<country>US</country>
+						<eMailAdd>ntad@dot.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005">
+					</RoleCd>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None. No fees are applicable for obtaining the dataset.</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>Open Data Catalog</formatName>
+				<formatVer>1.0</formatVer>
+				<formatSpec>download</formatSpec>
+				<formatInfo>An ESRI Geodatabase, ESRI shapefile, or spreadsheet.</formatInfo>
+				<fileDecmTech>ZIP</fileDecmTech>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.21949/1519415 </linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+				<rpPosName>NTAD Program Manager</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>none</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>1200 New Jersey Ave. SE</delPoint>
+						<city>Washington</city>
+						<adminArea>DC</adminArea>
+						<postCode>20590</postCode>
+						<country>US</country>
+						<eMailAdd>ntad@dot.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005">
+					</RoleCd>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None. No fees are applicable for obtaining the dataset.</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>Esri Feature Service</formatName>
+				<formatVer>11.1</formatVer>
+				<formatSpec>https://developers.arcgis.com/rest/services-reference/online/hosted-feature-service.htm</formatSpec>
+				<formatInfo>ArcGIS Online Hosted Esri Feature Service for visualizing geospatial information</formatInfo>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.21949/1519417 </linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+				<rpPosName>NTAD Program Manager</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>none</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>1200 New Jersey Ave. SE</delPoint>
+						<city>Washington</city>
+						<adminArea>DC</adminArea>
+						<postCode>20590</postCode>
+						<country>US</country>
+						<eMailAdd>ntad@dot.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005">
+					</RoleCd>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None. No fees are applicable for obtaining the dataset.</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>AZURE Cloud ArcGIS Server Vector Tile Service</formatName>
+				<formatVer>1.0</formatVer>
+				<formatSpec>https://www.ogc.org/standards/wmts</formatSpec>
+				<formatInfo>Vector Tile Service for visualizing geospatial information</formatInfo>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.21949/1522251</linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distFormat><formatName Sync="TRUE">Shapefile</formatName></distFormat><distTranOps><transSize Sync="TRUE">0.000</transSize></distTranOps></distInfo>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>North American Rail Network Lines</resTitle>
+			<date>
+				<createDate>1995-07-01</createDate>
+				<lastUpdateDate>2024-10-16</lastUpdateDate>
+			</date>
+			<citRespParty>
+				<rpOrgName>Federal Railroad Administration (FRA)</rpOrgName>
+				<role>
+					<RoleCd value="006">
+					</RoleCd>
+				</role>
+			</citRespParty>
+			<presForm>
+				<PresFormCd value="">
+				</PresFormCd>
+			</presForm>
+			<presForm>
+				<fgdcGeoform>vector digital data</fgdcGeoform>
+			</presForm>
+			<collTitle>National Transportation Atlas Database</collTitle>
+		</idCitation>
+		<idAbs>The North American Rail Network (NARN) Rail Lines dataset was created in 2016 and was updated on October 16, 2024 from the Federal Railroad Administration (FRA) and is part of the U.S. Department of Transportation (USDOT)/Bureau of Transportation Statistics (BTS) National Transportation Atlas Database (NTAD). The NARN Rail Lines dataset is a database that provides ownership, trackage rights, type, passenger, STRACNET, and  geographic reference for North America's railway system at 1:24,000 or better within the United States. The data set covers all 50 States, the District of Columbia, Mexico, and Canada.</idAbs>
+		<idPurp>North American Rail Network (NARN) can be used within the public, the federal government, rail industry, state DOTs, and academia for routing, mapping and analysis.</idPurp>
+		<idCredit>Acknowledgment of the Federal Railroad Administration (FRA) and the Bureau of Transportation Statistics (BTS) [distributor].</idCredit>
+		<idStatus>
+			<ProgCd value="004">
+			</ProgCd>
+		</idStatus>
+		<idPoC>
+			<rpIndName>Federal Railroad Administration (FRA) GIS Office</rpIndName>
+			<rpOrgName>Federal Railroad Administration (FRA)</rpOrgName>
+			<rpPosName>GIS Program Manager</rpPosName>
+			<rpCntInfo>
+				<cntAddress addressType="both">
+					<delPoint>1200 New Jersey Ave. SE</delPoint>
+					<city>Washington</city>
+					<adminArea>DC</adminArea>
+					<postCode>20590</postCode>
+					<country>United States</country>
+					<eMailAdd>FRAGIS@dot.gov</eMailAdd>
+				</cntAddress>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007">
+				</RoleCd>
+			</role>
+		</idPoC>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="009">
+				</MaintFreqCd>
+			</maintFreq>
+		</resMaint>
+		<placeKeys>
+			<keyword>USA</keyword>
+			<keyword>National</keyword>
+			<keyword>North America</keyword>
+		</placeKeys>
+		<themeKeys>
+			<keyword>transportation</keyword>
+			<thesaName>
+				<resTitle>ISO 19115 Topic Category</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>NGDA</keyword>
+			<keyword>National Geospatial Data Asset</keyword>
+			<keyword>Transportation</keyword>
+			<thesaName>
+				<resTitle>NGDA Portfolio Themes</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>NTAD</keyword>
+			<keyword>National Transportation Atlas Database</keyword>
+			<keyword>Transportation</keyword>
+			<keyword>Atlas</keyword>
+			<keyword>Database</keyword>
+			<keyword>vector</keyword>
+			<keyword>line</keyword>
+			<keyword>linear Rail</keyword>
+			<keyword>NARN</keyword>
+			<keyword>Network</keyword>
+			<keyword>Lines</keyword>
+		</themeKeys>
+		<searchKeys>
+			<keyword>transportation</keyword>
+			<keyword>USA</keyword>
+			<keyword>National</keyword>
+			<keyword>North America</keyword>
+			<keyword>NTAD</keyword>
+			<keyword>National Transportation Atlas Database</keyword>
+			<keyword>Transportation</keyword>
+			<keyword>Atlas</keyword>
+			<keyword>Database</keyword>
+			<keyword>vector</keyword>
+			<keyword>line</keyword>
+			<keyword>linear Rail</keyword>
+			<keyword>NARN</keyword>
+			<keyword>Network</keyword>
+			<keyword>Lines</keyword>
+		</searchKeys>
+		<resConst>
+			<Consts>
+				<useLimit>This NTAD dataset is a work of the United States government as defined in 17 U.S.C. § 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<Consts>
+				<useLimit>This NTAD dataset is a work of the United States government as defined in 17 U.S.C. § 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.</useLimit>
+			</Consts>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="">
+					</RestrictCd>
+				</accessConsts>
+			</LegConsts>
+		</resConst>
+		<aggrInfo>
+			<aggrDSName>
+				<resTitle>National Transportation Atlas Database</resTitle>
+				<date>
+					<pubDate>2024-10-25</pubDate>
+				</date>
+				<citRespParty>
+					<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+					<role>
+						<RoleCd value="006">
+						</RoleCd>
+					</role>
+				</citRespParty>
+			</aggrDSName>
+			<assocType>
+				<AscTypeCd value="002">
+				</AscTypeCd>
+			</assocType>
+		</aggrInfo>
+		<tpCat>
+			<TopicCatCd value="018">
+			</TopicCatCd>
+		</tpCat>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox>
+					<exTypeCode>true</exTypeCode>
+					<westBL>-168.283333</westBL>
+					<eastBL>-52.266666999999998</eastBL>
+					<northBL>71.433333300000001</northBL>
+					<southBL>14.483333</southBL>
+				</GeoBndBox>
+			</geoEle>
+			<tempEle>
+				<TempExtent>
+					<exTemp>
+						<TM_Instant>
+							<tmPosition>2016-01-01</tmPosition>
+						</TM_Instant>
+					</exTemp>
+				</TempExtent>
+			</tempEle>
+		</dataExt>
+		<envirDesc>Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</envirDesc>
+		<dataLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><spatRpType><SpatRepTypCd value="001" Sync="TRUE"></SpatRepTypCd></spatRpType></dataIdInfo>
+	<dqInfo>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005">
+				</ScopeCd>
+			</scpLvl>
+		</dqScope>
+		<report type="DQCompOm">
+			<measDesc>Data set is considered complete for the information presented, as described in the abstract. Users are advised to read the rest of the metadata record carefully for additional details.</measDesc>
+		</report>
+		<dataLineage>
+			<prcStep>
+				<stepDesc>The North American Rail Network was created using the preexisting FRA network 1:100k, the FRA Automated Track Inspection Program (ATIP) data, and the data provided to NGA by ORNL.  The source data of the spatial features was based on FRA’s ATIP foot by foot coordinates, where it existed, and the NGA/ORNL spatial content.</stepDesc>
+			</prcStep>
+		</dataLineage>
+	</dqInfo>
+	<spatRepInfo>
+		<VectSpatRep><geometObjs Name="WES Line"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo>
+	<eainfo>
+		<overview>
+			<eaover>The NARN Rail Lines dataset is a database that provides ownership, trackage rights, type, passenger, STRACNET, and  geographic reference for North America's railway system at 1:24,000 or better within the United States. The data set covers all 50 States, the District of Columbia, Mexico, and Canada.</eaover>
+			<eadetcit>https://doi.org/10.21949/1528950</eadetcit>
+		</overview>
+		<detailed Name="WES Line"><enttyp><enttypl Sync="TRUE">WES Line</enttypl><enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">0</enttypc></enttyp><attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">Shape</attrlabl><attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Feature geometry.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">FRAARCID</attrlabl><attalias Sync="TRUE">FRAARCID</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">FRFRANODE</attrlabl><attalias Sync="TRUE">FRFRANODE</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TOFRANODE</attrlabl><attalias Sync="TRUE">TOFRANODE</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STFIPS</attrlabl><attalias Sync="TRUE">STFIPS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">2</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">CNTYFIPS</attrlabl><attalias Sync="TRUE">CNTYFIPS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">3</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STCNTYFIPS</attrlabl><attalias Sync="TRUE">STCNTYFIPS</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STATEAB</attrlabl><attalias Sync="TRUE">STATEAB</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">2</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">COUNTRY</attrlabl><attalias Sync="TRUE">COUNTRY</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">2</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">FRADISTRCT</attrlabl><attalias Sync="TRUE">FRADISTRCT</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">5</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RROWNER1</attrlabl><attalias Sync="TRUE">RROWNER1</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RROWNER2</attrlabl><attalias Sync="TRUE">RROWNER2</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RROWNER3</attrlabl><attalias Sync="TRUE">RROWNER3</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS1</attrlabl><attalias Sync="TRUE">TRKRGHTS1</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS2</attrlabl><attalias Sync="TRUE">TRKRGHTS2</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS3</attrlabl><attalias Sync="TRUE">TRKRGHTS3</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS4</attrlabl><attalias Sync="TRUE">TRKRGHTS4</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS5</attrlabl><attalias Sync="TRUE">TRKRGHTS5</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS6</attrlabl><attalias Sync="TRUE">TRKRGHTS6</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS7</attrlabl><attalias Sync="TRUE">TRKRGHTS7</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS8</attrlabl><attalias Sync="TRUE">TRKRGHTS8</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRKRGHTS9</attrlabl><attalias Sync="TRUE">TRKRGHTS9</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">DIVISION</attrlabl><attalias Sync="TRUE">DIVISION</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">100</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">SUBDIV</attrlabl><attalias Sync="TRUE">SUBDIV</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">100</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">BRANCH</attrlabl><attalias Sync="TRUE">BRANCH</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">100</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">YARDNAME</attrlabl><attalias Sync="TRUE">YARDNAME</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">30</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">PASSNGR</attrlabl><attalias Sync="TRUE">PASSNGR</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STRACNET</attrlabl><attalias Sync="TRUE">STRACNET</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TRACKS</attrlabl><attalias Sync="TRUE">TRACKS</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">NET</attrlabl><attalias Sync="TRUE">NET</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">MILES</attrlabl><attalias Sync="TRUE">MILES</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">KM</attrlabl><attalias Sync="TRUE">KM</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">TIMEZONE</attrlabl><attalias Sync="TRUE">TIMEZONE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr></detailed></eainfo>
+	<mdLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdHrLvName Sync="TRUE">dataset</mdHrLvName><refSysInfo><RefSystem><refSysID><identCode code="4326" Sync="TRUE"></identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">6.2(3.0.1)</idVersion></refSysID></RefSystem></refSysInfo><spdoinfo><ptvctinf><esriterm Name="WES Line"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="3" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">0</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo></metadata>

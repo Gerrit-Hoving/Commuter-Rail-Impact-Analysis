@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20241123</CreaDate>
+		<CreaTime>19262700</CreaTime>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<SyncOnce>FALSE</SyncOnce>
+		<DataProperties>
+			<itemProps><itemName Sync="TRUE">NMRX Stops</itemName><imsContentType Sync="TRUE">002</imsContentType><itemSize Sync="TRUE">0.000</itemSize><itemLocation><linkage Sync="TRUE">file://\\DESKTOP-UJ6FSHC\C$\Users\Gerrit\Documents\ArcGIS\Projects\Local Commuter Rail History Final Project\RouteData\NMRX Stops.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></itemLocation></itemProps><coordRef><type Sync="TRUE">Geographic</type><geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn><csUnits Sync="TRUE">Angular Unit: Degree (0.017453)</csUnits><peXml Sync="TRUE">&lt;GeographicCoordinateSystem xsi:type='typens:GeographicCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/3.2.0'&gt;&lt;WKT&gt;GEOGCS[&amp;quot;GCS_WGS_1984&amp;quot;,DATUM[&amp;quot;D_WGS_1984&amp;quot;,SPHEROID[&amp;quot;WGS_1984&amp;quot;,6378137.0,298.257223563]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433],AUTHORITY[&amp;quot;EPSG&amp;quot;,4326]]&lt;/WKT&gt;&lt;XOrigin&gt;-400&lt;/XOrigin&gt;&lt;YOrigin&gt;-400&lt;/YOrigin&gt;&lt;XYScale&gt;11258999068426.238&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;8.983152841195215e-09&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;LeftLongitude&gt;-180&lt;/LeftLongitude&gt;&lt;WKID&gt;4326&lt;/WKID&gt;&lt;LatestWKID&gt;4326&lt;/LatestWKID&gt;&lt;/GeographicCoordinateSystem&gt;</peXml></coordRef><lineage><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx\ExportFeatures" Date="20241123" Time="133111">ExportFeatures National_Transit_Map_Stops "C:\Users\Gerrit\Documents\ArcGIS\Projects\Local Commuter Rail History Final Project\RouteData\NMRX Stops.shp" "stop_name LIKE '%Rail Runner%'" NOT_USE_ALIAS "ntd_id "ntd_id" true true false 53 Text 0 0,First,#,National_Transit_Map_Stops,ntd_id,0,52;stop_id "stop_id" true true false 179 Text 0 0,First,#,National_Transit_Map_Stops,stop_id,0,178;stop_name "stop_name" true true false 139 Text 0 0,First,#,National_Transit_Map_Stops,stop_name,0,138;stop_desc "stop_desc" true true false 250 Text 0 0,First,#,National_Transit_Map_Stops,stop_desc,0,249;stop_lat "stop_lat" true true false 19 Double 0 0,First,#,National_Transit_Map_Stops,stop_lat,-1,-1;stop_lon "stop_lon" true true false 19 Double 0 0,First,#,National_Transit_Map_Stops,stop_lon,-1,-1;zone_id "zone_id" true true false 20 Text 0 0,First,#,National_Transit_Map_Stops,zone_id,0,19;stop_url "stop_url" true true false 186 Text 0 0,First,#,National_Transit_Map_Stops,stop_url,0,185;stop_code "stop_code" true true false 44 Text 0 0,First,#,National_Transit_Map_Stops,stop_code,0,43;location_t "location_t" true true false 4 Text 0 0,First,#,National_Transit_Map_Stops,location_t,0,3;parent_sta "parent_sta" true true false 24 Text 0 0,First,#,National_Transit_Map_Stops,parent_sta,0,23;stop_timez "stop_timez" true true false 28 Text 0 0,First,#,National_Transit_Map_Stops,stop_timez,0,27;wheelchair "wheelchair" true true false 4 Text 0 0,First,#,National_Transit_Map_Stops,wheelchair,0,3;level_id "level_id" true true false 28 Text 0 0,First,#,National_Transit_Map_Stops,level_id,0,27;platform_c "platform_c" true true false 72 Text 0 0,First,#,National_Transit_Map_Stops,platform_c,0,71;agency_id "agency_id" true true false 254 Text 0 0,First,#,National_Transit_Map_Stops,agency_id,0,253;download_d "download_d" true true false 10 Text 0 0,First,#,National_Transit_Map_Stops,download_d,0,9" #</Process></lineage></DataProperties>
+		<SyncDate>20241123</SyncDate><SyncTime>13311100</SyncTime><ModDate>20241123</ModDate><ModTime>13311100</ModTime></Esri>
+	<mdChar>
+		<CharSetCd value="004">
+		</CharSetCd>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd value="005">
+		</ScopeCd>
+	</mdHrLv>
+	<mdContact>
+		<rpOrgName>Bureau of Transportation Statistics (BTS)</rpOrgName>
+		<rpPosName>National Transit Map (NTM) Program Manager</rpPosName>
+		<rpCntInfo>
+			<cntPhone>
+				<voiceNum>202-366-8069</voiceNum>
+			</cntPhone>
+			<cntAddress addressType="both">
+				<delPoint>1200 New Jersey Ave. SE</delPoint>
+				<city>Washington</city>
+				<adminArea>DC</adminArea>
+				<postCode>20590</postCode>
+				<country>United States</country>
+				<eMailAdd>NationalTransitMap@dot.gov</eMailAdd>
+			</cntAddress>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007">
+			</RoleCd>
+		</role>
+	</mdContact>
+	<mdDateSt>2024-09-18</mdDateSt>
+	<distInfo>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+				<rpPosName>NTAD Program Manager</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>none</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>1200 New Jersey Ave. SE</delPoint>
+						<city>Washington</city>
+						<adminArea>DC</adminArea>
+						<postCode>20590</postCode>
+						<country>US</country>
+						<eMailAdd>ntad@dot.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005">
+					</RoleCd>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None. No fees are applicable for obtaining the dataset.</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>Open Data Catalog</formatName>
+				<formatVer>1.0</formatVer>
+				<formatSpec>download</formatSpec>
+				<formatInfo>An ESRI Geodatabase, ESRI shapefile, or spreadsheet.</formatInfo>
+				<fileDecmTech>ZIP</fileDecmTech>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.21949/1522113</linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distributor>
+			<distorCont>
+				<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+				<rpPosName>NTAD Program Manager</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum>none</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>1200 New Jersey Ave. SE</delPoint>
+						<city>Washington</city>
+						<adminArea>DC</adminArea>
+						<postCode>20590</postCode>
+						<country>US</country>
+						<eMailAdd>ntad@dot.gov</eMailAdd>
+					</cntAddress>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="005">
+					</RoleCd>
+				</role>
+			</distorCont>
+			<distorOrdPrc>
+				<resFees>None. No fees are applicable for obtaining the dataset.</resFees>
+			</distorOrdPrc>
+			<distorFormat>
+				<formatName>Esri Feature Service</formatName>
+				<formatVer>11.1</formatVer>
+				<formatSpec>https://developers.arcgis.com/rest/services-reference/online/hosted-feature-service.htm</formatSpec>
+				<formatInfo>ArcGIS Online Hosted Esri Feature Service for visualizing geospatial information</formatInfo>
+			</distorFormat>
+			<distorTran>
+				<onLineSrc>
+					<linkage>https://doi.org/10.21949/1528036</linkage>
+				</onLineSrc>
+			</distorTran>
+		</distributor>
+		<distFormat><formatName Sync="TRUE">Shapefile</formatName></distFormat><distTranOps><transSize Sync="TRUE">0.000</transSize></distTranOps></distInfo>
+	<dataIdInfo>
+		<idCitation>
+			<resTitle>National Transit Map Stops</resTitle>
+			<date>
+				<createDate>2018-07-01</createDate>
+				<lastUpdateDate>2024-06-26</lastUpdateDate>
+			</date>
+			<citRespParty>
+				<rpOrgName>Bureau of Transportation Statistics (BTS)</rpOrgName>
+				<role>
+					<RoleCd value="006">
+					</RoleCd>
+				</role>
+			</citRespParty>
+			<presForm>
+				<PresFormCd value="">
+				</PresFormCd>
+			</presForm>
+			<presForm>
+				<fgdcGeoform>vector digital data</fgdcGeoform>
+			</presForm>
+			<collTitle>National Transportation Atlas Database</collTitle>
+		</idCitation>
+		<idAbs>The National Transit Map - Stops dataset was compiled on June 12, 2024 from the Bureau of Transportation Statistics (BTS) and is part of the U.S. Department of Transportation (USDOT)/Bureau of Transportation Statistics (BTS) National Transportation Atlas Database (NTAD). The National Transit Map (NTM) is a nationwide catalog of fixed-guideway and fixed-route transit service in America. It is compiled using General Transit Feed Specification (GTFS) Schedule data. The NTM Stops dataset shows stops where vehicles pick up or drop off riders. This dataset uses the GTFS stops.txt file. The GTFS schedule format and structure documentation is available at, https://gtfs.org/schedule/. To improve the spatial accuracy of the NTM Stops, the Bureau of Transportation Statistics (BTS) adjusts transit stops using context from the submitted GTFS source data and/or from other publicly available information about the transit service.</idAbs>
+		<idPurp>The intent of the National Transit Map (NTM) is to support research, analysis, and planning. It is not intended to replace existing customer services available through transit agency websites and commercial trip planning service providers.</idPurp>
+		<idCredit>Acknowledgment of the United States Department of Transportation (USDOT), Bureau of Transportation Statistics (BTS), and the following agencies with data under the Creative Commons Attribution 3.0 United States (CC-BY-3.0) license: RiverCities Transit; Ben Franklin Transit; Kootenai County; Spokane Tribe of Indians; Middletown Transit District; City of Bangor; Rockland Coaches Inc; County of Fayette; Unified Human Services Transportation Systems Inc; Dillions Bus Service Inc; Birmingham-Jefferson County Transit Authority; Metropolitan Bus Authority; Waccamaw Regional Transportation Authority; Municipality of Catano; City of Hinesville Georgia; Center for Pan Asian Community Services Inc; Town of Morrisville; Southwest Ohio Regional Transit Authority; City of Jackson Transportation Authority; City of Anderson; Gary Public Transportation Corporation; Greater Peoria Mass Transit District; City of Beloit; City of Columbus; Medina County Public Transit; Central Indiana Regional Transportation Authority; Bois Forte Reservation Tribal Council; Tesuque Pueblo; Pueblo of San Ildefonso; Pueblo of Santa Clara; Pueblo of Nambe; Transit Authority of Omaha; City of Wichita; Southeast Missouri State University; Fort Peck Tribes; Summit County; Via Mobility Services; Reno-Sparks Indian Colony; City of Delano; City of Sierra Vista; City of Avalon; City of Glendora; City of Lawndale; Chemehuevi Indian Tribe; and Pascua Yaqui Tribe.</idCredit>
+		<idStatus>
+			<ProgCd value="004">
+			</ProgCd>
+		</idStatus>
+		<idPoC>
+			<rpOrgName>Bureau of Transportation Statistics (BTS)</rpOrgName>
+			<rpPosName>National Transit Map (NTM) Program Manager</rpPosName>
+			<rpCntInfo>
+				<cntPhone>
+					<voiceNum>202-366-8069</voiceNum>
+				</cntPhone>
+				<cntAddress addressType="both">
+					<delPoint>1200 New Jersey Ave. SE</delPoint>
+					<city>Washington</city>
+					<adminArea>DC</adminArea>
+					<postCode>20590</postCode>
+					<country>United States</country>
+					<eMailAdd>NationalTransitMap@dot.gov</eMailAdd>
+				</cntAddress>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007">
+				</RoleCd>
+			</role>
+		</idPoC>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="006">
+				</MaintFreqCd>
+			</maintFreq>
+		</resMaint>
+		<placeKeys>
+			<keyword>USA</keyword>
+			<keyword>National</keyword>
+		</placeKeys>
+		<themeKeys>
+			<keyword>transportation</keyword>
+			<thesaName>
+				<resTitle>ISO 19115 Topic Category</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>NGDA</keyword>
+			<keyword>National Geospatial Data Asset</keyword>
+			<keyword>Transportation</keyword>
+			<thesaName>
+				<resTitle>NGDA Portfolio Themes</resTitle>
+			</thesaName>
+		</themeKeys>
+		<themeKeys>
+			<keyword>NTAD</keyword>
+			<keyword>National Transportation Atlas Database</keyword>
+			<keyword>Transportation</keyword>
+			<keyword>Atlas</keyword>
+			<keyword>Database</keyword>
+			<keyword>vector</keyword>
+			<keyword>point</keyword>
+			<keyword>Rail</keyword>
+			<keyword>NTM</keyword>
+			<keyword>National Transit Map</keyword>
+			<keyword>Transit</keyword>
+			<keyword>Map</keyword>
+			<keyword>Passenger Movement</keyword>
+			<keyword>Transportation Infrastructure</keyword>
+			<keyword>Passenger Travel</keyword>
+			<keyword>Connectivity</keyword>
+			<keyword>Accessibility</keyword>
+			<keyword>Frequency</keyword>
+			<keyword>Intercity</keyword>
+			<keyword>Bus</keyword>
+			<keyword>Fixed Route</keyword>
+		</themeKeys>
+		<searchKeys>
+			<keyword>transportation</keyword>
+			<keyword>USA</keyword>
+			<keyword>National</keyword>
+			<keyword>NTAD</keyword>
+			<keyword>National Transportation Atlas Database</keyword>
+			<keyword>Transportation</keyword>
+			<keyword>Atlas</keyword>
+			<keyword>Database</keyword>
+			<keyword>vector</keyword>
+			<keyword>point</keyword>
+			<keyword>Rail</keyword>
+			<keyword>NTM</keyword>
+			<keyword>National Transit Map</keyword>
+			<keyword>Transit</keyword>
+			<keyword>Map</keyword>
+			<keyword>Passenger Movement</keyword>
+			<keyword>Transportation Infrastructure</keyword>
+			<keyword>Passenger Travel</keyword>
+			<keyword>Connectivity</keyword>
+			<keyword>Accessibility</keyword>
+			<keyword>Frequency</keyword>
+			<keyword>Intercity</keyword>
+			<keyword>Bus</keyword>
+			<keyword>Fixed Route</keyword>
+		</searchKeys>
+		<resConst>
+			<Consts>
+				<useLimit>Creative Commons Attribution 3.0 United States (CC-BY-3.0)</useLimit>
+			</Consts>
+		</resConst>
+		<resConst>
+			<Consts>
+				<useLimit>Creative Commons Attribution 3.0 United States (CC-BY-3.0)</useLimit>
+			</Consts>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="009">
+					</RestrictCd>
+				</accessConsts>
+			</LegConsts>
+		</resConst>
+		<aggrInfo>
+			<aggrDSName>
+				<resTitle>National Transportation Atlas Database</resTitle>
+				<date>
+					<pubDate>2024-10-25</pubDate>
+				</date>
+				<citRespParty>
+					<rpOrgName>Bureau of Transportation Statistics</rpOrgName>
+					<role>
+						<RoleCd value="006">
+						</RoleCd>
+					</role>
+				</citRespParty>
+			</aggrDSName>
+			<assocType>
+				<AscTypeCd value="002">
+				</AscTypeCd>
+			</assocType>
+		</aggrInfo>
+		<tpCat>
+			<TopicCatCd value="018">
+			</TopicCatCd>
+		</tpCat>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox>
+					<exTypeCode>true</exTypeCode>
+					<westBL>-171.5</westBL>
+					<eastBL>-67</eastBL>
+					<northBL>71.5</northBL>
+					<southBL>18.5</southBL>
+				</GeoBndBox>
+			</geoEle>
+			<tempEle>
+				<TempExtent>
+					<exTemp>
+						<TM_Instant>
+							<tmPosition>2024-06-12</tmPosition>
+						</TM_Instant>
+					</exTemp>
+				</TempExtent>
+			</tempEle>
+		</dataExt>
+		<envirDesc>Version 6.2 (Build 9200) ; Esri ArcGIS 10.8.1.14362</envirDesc>
+		<dataLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><spatRpType><SpatRepTypCd value="001" Sync="TRUE"></SpatRepTypCd></spatRpType></dataIdInfo>
+	<dqInfo>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005">
+				</ScopeCd>
+			</scpLvl>
+		</dqScope>
+		<report type="DQCompOm">
+			<measDesc>Data set is considered complete for the information presented, as described in the abstract. Users are advised to read the rest of the metadata record carefully for additional details.</measDesc>
+		</report>
+		<dataLineage>
+			<prcStep>
+				<stepDesc>Beginning in Report Year 2023, Federal Transit Administration (FTA) National Transit Database (NTD) Reporters will submit General Transit Feed Specification (GTFS) with their annual report. The deadline is determined by the Reporter's fiscal year end date. Reporters provide a Uniform Resource Locators (URL) to their GTFS data. The Bureau of Transportation Statistics (BTS) enters the submissions in the National Transit Map (NTM) registry and uses the URLs to download GTFS data. For agencies with valid stops.txt data, BTS combine and processes the files into a geospatial format. BTS then validates, adjusts for spatial accuracy, and publishes the dataset to the National Transportation Atlas Database (NTAD).
+
+Prior to the FTA GTFS requirement, the same procedure was in place with the addition of the transit agency granting the U.S. Department of Transportation (USDOT) a Creative Commons Attribution 3.0 United States (CC-BY-3.0) license. The CC-BY-3.0 license is available at, https://creativecommons.org/licenses/by/3.0/us/legalcode.</stepDesc>
+			</prcStep>
+		</dataLineage>
+	</dqInfo>
+	<spatRepInfo>
+		<VectSpatRep><geometObjs Name="NMRX Stops"><geoObjTyp><GeoObjTypCd value="004" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo>
+	<eainfo>
+		<overview>
+			<eaover>The National Transit Map (NTM) is a nationwide catalog of fixed-guideway and fixed-route transit service in America. It is compiled using General Transit Feed Specification (GTFS) Schedule data. The NTM Stops dataset shows stops where vehicles pick up or drop off riders. This dataset uses the GTFS stops.txt file. The GTFS schedule format and structure documentation is available at, https://gtfs.org/schedule/. To improve the spatial accuracy of the NTM Stops, the Bureau of Transportation Statistics (BTS) adjusts transit stops using context from the submitted GTFS source data and/or from other publicly available information about the transit service.</eaover>
+			<eadetcit>https://doi.org/10.21949/1529049</eadetcit>
+		</overview>
+		<detailed Name="NMRX Stops"><enttyp><enttypl Sync="TRUE">NMRX Stops</enttypl><enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">0</enttypc></enttyp><attr><attrlabl Sync="TRUE">FID</attrlabl><attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Internal feature number.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">Shape</attrlabl><attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Feature geometry.</attrdef><attrdefs Sync="TRUE">Esri</attrdefs><attrdomv><udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">ntd_id</attrlabl><attalias Sync="TRUE">ntd_id</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">53</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_id</attrlabl><attalias Sync="TRUE">stop_id</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">179</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_name</attrlabl><attalias Sync="TRUE">stop_name</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">139</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_desc</attrlabl><attalias Sync="TRUE">stop_desc</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">250</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_lat</attrlabl><attalias Sync="TRUE">stop_lat</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_lon</attrlabl><attalias Sync="TRUE">stop_lon</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">zone_id</attrlabl><attalias Sync="TRUE">zone_id</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">20</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_url</attrlabl><attalias Sync="TRUE">stop_url</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">186</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_code</attrlabl><attalias Sync="TRUE">stop_code</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">44</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">location_t</attrlabl><attalias Sync="TRUE">location_t</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">parent_sta</attrlabl><attalias Sync="TRUE">parent_sta</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">24</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">stop_timez</attrlabl><attalias Sync="TRUE">stop_timez</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">28</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">wheelchair</attrlabl><attalias Sync="TRUE">wheelchair</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">level_id</attrlabl><attalias Sync="TRUE">level_id</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">28</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">platform_c</attrlabl><attalias Sync="TRUE">platform_c</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">72</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">agency_id</attrlabl><attalias Sync="TRUE">agency_id</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">download_d</attrlabl><attalias Sync="TRUE">download_d</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr></detailed></eainfo>
+	<mdLang><languageCode value="eng" Sync="TRUE"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdHrLvName Sync="TRUE">dataset</mdHrLvName><refSysInfo><RefSystem><refSysID><identCode code="4326" Sync="TRUE"></identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">6.2(3.0.1)</idVersion></refSysID></RefSystem></refSysInfo><spdoinfo><ptvctinf><esriterm Name="NMRX Stops"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="1" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">0</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">TRUE</linrefer></esriterm></ptvctinf></spdoinfo></metadata>

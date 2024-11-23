@@ -33,7 +33,7 @@ northstar_counties <- c("Anoka", "Sherburne", "Wright", "Hennepin")
 mn_census_data <- map_df(northstar_counties, function(county) {
   get_acs(
     geography = "tract",
-    variables = "B19013_001", # Median household income variable
+    variables = "B01003_001", # Total population
     state = "27", # MN FIPS code
     county = county,
     geometry = TRUE,
@@ -48,7 +48,7 @@ wegostar_counties <- c("Davidson", "Sumner", "Wilson")
 tn_census_data <- map_df(wegostar_counties, function(county) {
   get_acs(
     geography = "tract",
-    variables = "B19013_001", # Median household income variable
+    variables = "B01003_001", # Total population
     state = "47", # TN FIPS code
     county = county,
     geometry = TRUE,
@@ -62,8 +62,50 @@ frontrunner_counties <- c("Salt Lake", "Utah", "Weber", "Morgan", "Davis")
 ut_census_data <- map_df(frontrunner_counties, function(county) {
   get_acs(
     geography = "tract",
-    variables = "B19013_001", # Median household income variable
-    state = "49", # MN FIPS code
+    variables = "B01003_001", # Total population
+    state = "49", #UT FIPS Code
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+
+railrunner_counties <- c("Santa Fe", "Valencia", "Bernalillo", "Sandoval")
+
+# Get the median household income data for each census tract in the specified counties
+nm_census_data <- map_df(railrunner_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B01003_001", # Total population
+    state = "35", #NM FIPS Code
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+
+westside_counties <- c("Washington", "Yamhill", "Clackamas", "Marion", "Multnomah")
+
+# Get the median household income data for each census tract in the specified counties
+or_census_data <- map_df(westside_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B01003_001", # Total population
+    state = "41", # OR FIPS Code
+    county = county,
+    geometry = TRUE,
+    year = 2022
+  )
+})
+
+silverline_counties <- c("Allegheny")
+
+# Get the median household income data for each census tract in the specified counties
+pa_census_data <- map_df(silverline_counties, function(county) {
+  get_acs(
+    geography = "tract",
+    variables = "B01003_001", # Total population
+    state = "42", # PA FIPS Code
     county = county,
     geometry = TRUE,
     year = 2022
@@ -92,6 +134,27 @@ frontrunner_map <- ut_census_data %>%
 
 # Test whether join was successful
 plot(frontrunner_map["hpi2000"])
+
+# Left join on GEOID
+railrunner_map <- nm_census_data %>%
+  left_join(hpi_national, by = "GEOID")
+
+# Test whether join was successful
+plot(railrunner_map["hpi2000"])
+
+# Left join on GEOID
+westside_map <- or_census_data %>%
+  left_join(hpi_national, by = "GEOID")
+
+# Test whether join was successful
+plot(westside_map["hpi2000"])
+
+# Left join on GEOID
+silverline_map <- pa_census_data %>%
+  left_join(hpi_national, by = "GEOID")
+
+# Test whether join was successful
+plot(silverline_map["hpi2000"])
 
 ```
 
@@ -136,26 +199,121 @@ ggplot() +
   theme_minimal()
 
 
-# Read commuter line shapefile
-frontrunner_line <- st_read("./data/UTA_FrontRunner_Commuter_Rail_Route_Centerline.shp") %>%
-  filter()
+getStations <- function(name, map, line_file, station_file) {
+  line <- st_read(line_file)
+  stations <- st_read(station_file)
+  
+  p <- ggplot() +
+    geom_sf(data = map, aes(fill = hpi2000), color = NA) +
+    scale_fill_viridis_c(option = "plasma", name = "HPI") +
+    geom_sf(data = line, color = "blue", size = 1) +       
+    geom_sf(data = stations, color = "red", size = 2) +      
+    labs(title = paste0("HPI and ", name, " Rail Line"),
+         caption = "Source: ACS 2022 and FHFA") +
+    theme_minimal()
+  print(p)
+  
+  return(list(l=line, s=stations))
+}
 
-# Read station shapefile
-frontrunner_stations <- st_read("./data/FrontRunner_Commuter_Rail_Stations.shp") %>% 
-  filter()
+data <- getStations("Frontrunner", frontrunner_map,
+            "./data/UTA_FrontRunner_Commuter_Rail_Route_Centerline.shp", 
+            "./data/FrontRunner_Commuter_Rail_Stations.shp")
+frontrunner_line <- data$l 
+frontrunner_staions <- data$s
 
-# Plot hpi data and add shapefiles
-ggplot() +
-  geom_sf(data = frontrunner_map, aes(fill = hpi2000), color = NA) +
-  scale_fill_viridis_c(option = "plasma", name = "HPI") +
-  geom_sf(data = frontrunner_line, color = "blue", size = 1) +       
-  geom_sf(data = frontrunner_stations, color = "red", size = 2) +      
-  labs(title = "HPI and FrontRunner Rail Line",
-       subtitle = "Salt Lake City Metro Area",
-       caption = "Source: ACS 2022 and FHFA") +
-  theme_minimal()
+data <- getStations("Rail Runner", railrunner_map,
+            "./data/NMRX Line.shp", 
+            "./data/NMRX Stops.shp")
+railrunner_line <- data$l 
+railrunner_staions <- data$s
+
+data <- getStations("Westside Express", westside_map,
+            "./data/WES Line.shp", 
+            "./data/WES Stops.shp")
+westside_line <- data$l 
+westside_staions <- data$s
+
+data <- getStations("Silver Line", silverline_map,
+            "./data/Routes_2206_shp.shp", 
+            "./data/PRT_Stations.shp")
+silverline_line <- data$l 
+silverline_staions <- data$s
+
+#PRT_Stations_%26_Stops_-_October_2024
 ```
 
+
+
+
+
+```{r}
+generateFigures <- function(stations, map, yr_built, mid_distance=500, max_distance=10000) {
+  # Make sure stations and tracts have the same CRS
+  if (st_crs(stations) != st_crs(map)) {
+    stations <- st_transform(stations, st_crs(map))
+  }
+  
+  # Calculate the distance from each tract to all stations
+  distance_matrix <- st_distance(map, stations)
+  map$distance_to_station <- apply(distance_matrix, 1, min)
+  
+  # Classify data based on proximity to stations and time of construction
+  map <- map %>%
+    mutate(
+      proximity = case_when(
+        distance_to_station <= mid_distance ~ "Near station",
+        distance_to_station <= max_distance ~ "Surrounding area"
+      ),
+      timing = case_when(
+        year <= yr_built ~ "Before",
+        year > yr_built ~ "After"
+      ), 
+      case = case_when(
+        distance_to_station <= 500 & year <= yr_built ~ "Near station, before",
+        distance_to_station <= 500 & year > yr_built ~ "Near station, after",
+        distance_to_station <= 10000 & year <= yr_built ~ "Surrounging area, before",
+        distance_to_station <= 10000 & year > yr_built ~ "Surrounding area, after"
+      ),
+    ) %>%
+    filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
+  
+  # Create a strip plot of HPI 
+  p1 <- ggplot(map, aes(x = case, y = annual_change, 
+                                 color = distance_to_station)) +
+    geom_jitter(width = 0.2, alpha = 0.5) +
+    geom_violin(fill = "#00000000") +
+    labs(
+      title = "HPI Comparison Based on Proximity to Stations",
+      x = "Proximity to Station",
+      y = "HPI Annual Change",
+      caption = "Source: ACS 2022"
+    ) +
+    scale_color_viridis_c() +
+    theme_minimal()
+  
+  # Create scatter plot and lines of best fit for distance vs annual change in HPI
+  p2 <- ggplot(map) + 
+    geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
+               alpha = 0.2) +
+    geom_smooth(aes(x = distance_to_station, y = annual_change, 
+                    color = timing, group = timing), 
+                method = "lm", se = FALSE) +
+    labs(
+      title = "Annual Change vs Distance to Station",
+      x = "Distance to Station (m)",
+      y = "Annual Change in Housing Price Index",
+      color = "Timing"
+    ) +
+    theme_minimal()
+  
+  print(p1)
+  print(p2)
+}
+
+generateFigures(northstar_stations, northstar_map, 2010)
+
+```
 
 
 
