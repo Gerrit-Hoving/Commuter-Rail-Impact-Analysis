@@ -111,6 +111,40 @@ pa_census_data <- map_df(silverline_counties, function(county) {
     year = 2022
   )
 })
+
+get_acs_data <- function(counties, state, min_year, max_year) {
+  df <- map_df(silverline_counties, function(county) {
+    get_acs(
+      geography = "tract",
+      variables = "B01003_001", # Total population
+      state = state, # FIPS Code
+      county = county,
+      geometry = TRUE,
+      year = min_year
+    )
+  })
+   
+  for (i in (min_year+1):max_year) {
+    temp_df <- map_df(silverline_counties, function(county) {
+      get_acs(
+        geography = "tract",
+        variables = "B01003_001", # Total population
+        state = state, # FIPS Code
+        county = county,
+        geometry = TRUE,
+        year = i
+      )
+    }) 
+    
+    df <- bind_rows(df, temp_df)
+  }
+  
+  df %>%
+    select(-c(variable, moe)) %>%
+    rename(population = estimate)
+}
+
+pa_census_data <- get_acs_data(silverline_counties, "42", 2005, 2023)
 ```
 
 ```{r}
@@ -220,25 +254,25 @@ data <- getStations("Frontrunner", frontrunner_map,
             "./data/UTA_FrontRunner_Commuter_Rail_Route_Centerline.shp", 
             "./data/FrontRunner_Commuter_Rail_Stations.shp")
 frontrunner_line <- data$l 
-frontrunner_staions <- data$s
+frontrunner_stations <- data$s
 
 data <- getStations("Rail Runner", railrunner_map,
             "./data/NMRX Line.shp", 
             "./data/NMRX Stops.shp")
 railrunner_line <- data$l 
-railrunner_staions <- data$s
+railrunner_stations <- data$s
 
 data <- getStations("Westside Express", westside_map,
             "./data/WES Line.shp", 
             "./data/WES Stops.shp")
 westside_line <- data$l 
-westside_staions <- data$s
+westside_stations <- data$s
 
 data <- getStations("Silver Line", silverline_map,
             "./data/Routes_2206_shp.shp", 
             "./data/PRT_Stations.shp")
 silverline_line <- data$l 
-silverline_staions <- data$s
+silverline_stations <- data$s
 
 #PRT_Stations_%26_Stops_-_October_2024
 ```
@@ -278,6 +312,13 @@ generateFigures <- function(stations, map, yr_built, mid_distance=500, max_dista
     ) %>%
     filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
   
+  mapStats <- map %>%
+    group_by(proximity, year) %>%
+    summarize(hpi = mean(hpi),
+              annual_change = mean(annual_change),
+              pop = mean()) %>%
+    ungroup()
+  
   # Create a strip plot of HPI 
   p1 <- ggplot(map, aes(x = case, y = annual_change, 
                                  color = distance_to_station)) +
@@ -307,12 +348,25 @@ generateFigures <- function(stations, map, yr_built, mid_distance=500, max_dista
     ) +
     theme_minimal()
   
-  print(p1)
+  p3 <- ggplot(map) + 
+    geom_point(aes(x=year, y=hpi, color=proximity), alpha = 0.5)+
+    geom_line(aes(x=year, y=hpi, color = proximity), data = mapStats)
+  
+  p4 <- ggplot(mapStats) +
+    geom_line(aes(x=year, y=annual_change, color = proximity))
+  
+  #print(p1)
   print(p2)
+  print(p3)
+  print(p4)
 }
 
-generateFigures(northstar_stations, northstar_map, 2010)
-
+generateFigures(northstar_stations, northstar_map, 2009, 500, 1000)
+#generateFigures(wegostar_stations, wegostar_map, 2006)
+#generateFigures(frontrunner_stations, frontrunner_map, 2010)
+#generateFigures(railrunner_stations, railrunner_map, 2006)
+#generateFigures(westside_stations, westside_map, 2009)
+#generateFigures(silverline_stations, silverline_map, 2004)
 ```
 
 
