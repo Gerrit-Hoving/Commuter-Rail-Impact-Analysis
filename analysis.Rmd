@@ -357,7 +357,7 @@ generateFigures <- function(stations, map, yr_built,
   
   mapStats <- map %>%
     group_by(proximity, year) %>%
-    summarize(hpi = mean(hpi, na.rm = T),
+    dplyr::summarize(hpi = mean(hpi, na.rm = T),
               annual_change = mean(annual_change, na.rm = T),
               pop = mean(population)) %>%
     ungroup()
@@ -377,6 +377,8 @@ generateFigures <- function(stations, map, yr_built,
     theme_minimal()
   
   # Create scatter plot and lines of best fit for distance vs annual change in HPI
+
+  
   p2 <- ggplot(map) + 
     geom_point(aes(x = distance_to_station, y = annual_change, color = timing), 
                alpha = 0.2) +
@@ -391,6 +393,7 @@ generateFigures <- function(stations, map, yr_built,
     ) +
     theme_minimal()
   
+  # HPI over time
   p3 <- ggplot(map) + 
     geom_point(aes(x=year, y=hpi, color=proximity, alpha = proximity)) +
     geom_line(aes(x=year, y=hpi, color = proximity), data = mapStats) + 
@@ -398,17 +401,28 @@ generateFigures <- function(stations, map, yr_built,
     scale_alpha_manual(values = c("Adjacent to station" = 0.5, 
                                   "1/2 mile radius" = 0.5, 
                                   "Surrounding area" = 0.1)) +
-    labs(x="Year", y="Housing Price Index")
+    labs(x="Year", y="Housing Price Index", color="Distance to station", alpha="Distance to station")
   
+  # Annual change line graph
   p4 <- ggplot(mapStats) +
     geom_line(aes(x=year, y=annual_change, color = proximity)) + 
     geom_vline(aes(xintercept=yr_built)) +
     labs(x="Year", y = "Annual change in housing prices (%)", color = "Distance to station")
   
+  # Population 
+  p5 <- ggplot(mapStats %>% na.omit(pop)) +
+    geom_line(aes(x = year, y = pop, color = proximity)) + 
+    geom_point(aes(x = year, y = pop, color = proximity)) + 
+    geom_vline(aes(xintercept=yr_built)) +
+    theme_minimal() +
+    scale_y_continuous(limits = c(0, 6000)) +
+    labs(x="Year", y="Average census tract population")
+  
   #print(p1)
   print(p2)
   print(p3)
   print(p4)
+  print(p5)
   mapStats
 }
 
