@@ -241,8 +241,8 @@ northstar_stations <- st_read("./data/Stations By Route.shp") %>%
   filter(str_detect(Serves, 'Northstar'))
 
 # Plot hpi data and add shapefiles
-ggplot() +
-  geom_sf(data = filter(northstar_map, year == 2022), aes(fill = hpi), color = NA) +
+p <- ggplot() +
+  geom_sf(data = filter(northstar_map, year == 2020), aes(fill = hpi), color = NA) +
   scale_fill_viridis_c(option = "plasma", name = "HPI") +
   geom_sf(data = northstar_line, color = "blue", size = 1) +       
   geom_sf(data = northstar_stations, color = "red", size = 2) +      
@@ -250,6 +250,7 @@ ggplot() +
        subtitle = "Minneapolis-St. Paul Metro Area",
        caption = "Source: ACS 2022 and FHFA") +
   theme_minimal()
+ggsave("Northstar_map.png", plot = p, path = "./figures/")
 
 
 # Read commuter line shapefile
@@ -261,8 +262,8 @@ wegostar_stations <- st_read("./data/Stops.shp") %>%
   filter(str_detect(RoutesServ, '90'))
 
 # Plot hpi data and add shapefiles
-ggplot() +
-  geom_sf(data = filter(wegostar_map, year == 2022), aes(fill = hpi), color = NA) +
+p <- ggplot() +
+  geom_sf(data = filter(wegostar_map, year == 2020), aes(fill = hpi), color = NA) +
   scale_fill_viridis_c(option = "plasma", name = "HPI") +
   geom_sf(data = wegostar_line, color = "blue", size = 1) +       
   geom_sf(data = wegostar_stations, color = "red", size = 2) +      
@@ -270,6 +271,7 @@ ggplot() +
        subtitle = "Nashville Metro Area",
        caption = "Source: ACS 2022 and FHFA") +
   theme_minimal()
+ggsave("WeGoStar_map.png", plot = p, path = "./figures/")
 
 
 # Wrap generating map in function for files with straightfoward inputs
@@ -278,7 +280,7 @@ getStations <- function(name, map, line_file, station_file) {
   stations <- st_read(station_file)
   
   map = map %>%
-    filter(year == 2022)
+    filter(year == 2020)
   
   p <- ggplot() +
     geom_sf(data = map, aes(fill = hpi), color = NA) +
@@ -289,11 +291,12 @@ getStations <- function(name, map, line_file, station_file) {
          caption = "Source: ACS 2022 and FHFA") +
     theme_minimal()
   print(p)
+  ggsave(paste0(name, "_map.png"), plot = p, path = "./figures/")
   
   return(list(l=line, s=stations))
 }
 
-data <- getStations("Frontrunner", frontrunner_map,
+data <- getStations("FrontRunner", frontrunner_map,
             "./data/UTA_FrontRunner_Commuter_Rail_Route_Centerline.shp", 
             "./data/FrontRunner_Commuter_Rail_Stations.shp")
 frontrunner_line <- data$l 
@@ -445,6 +448,11 @@ generateFigures <- function(name, stations, map, yr_built,
   print(p3)
   print(p4)
   print(p5)
+  
+  ggsave(paste0(name, "_hpi_distance.png"), plot = p2, path = "./figures/")
+  ggsave(paste0(name, "_hpi_time.png"), plot = p3, path = "./figures/")
+  ggsave(paste0(name, "_annual_change_time.png"), plot = p4, path = "./figures/")
+  ggsave(paste0(name, "_pop_time.png"), plot = p5, path = "./figures/")
 
 }
 
