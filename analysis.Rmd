@@ -16,7 +16,7 @@ library(sf)
 
 # Imports Housing Price Index (HPI) Data by census tract from the Federal Housing Finance Agency
 hpi_national <- read_csv("https://www.fhfa.gov/hpi/download/annually/hpi_at_bdl_tract.csv")
-#hpi_national <- read_csv("C:/Users/Gerrit/Documents/ArcGIS/Projects/Local Commuter Rail History Final Project/hpi_at_bdl_tract.csv")
+
 hpi_national <- hpi_national %>%
   rename(GEOID = tract)
 ```
