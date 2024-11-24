@@ -394,7 +394,7 @@ generateFigures <- function(name, stations, map, yr_built,
     labs(
       title = paste0("Difference in housing prices before and after ", name, " line constructed"),
       x = "Distance to Station (m)",
-      y = "Average Annual Change in Housing Prices (%)",
+      y = "Average Annual Change (%)",
       color = "Time Period"
     ) +
     theme_minimal()
@@ -407,14 +407,18 @@ generateFigures <- function(name, stations, map, yr_built,
     scale_alpha_manual(values = c("Adjacent to station" = 0.5, 
                                   "1/2 mile radius" = 0.5, 
                                   "Surrounding area" = 0.1)) +
-    labs(x="Year", y="Housing Price Index", color="Distance to station", alpha="Distance to station") +
+    labs(title = paste0("Difference in housing prices before and after ", name, " line constructed"),
+         x = "Year", 
+         y = "Housing Price Index", 
+         color = "Distance to station", alpha="Distance to station") +
     theme_minimal()
   
   # Annual change line graph
   p4 <- ggplot(mapStats) +
     geom_line(aes(x=year, y=annual_change, color = proximity)) + 
     geom_vline(aes(xintercept=yr_built)) +
-    labs(x="Year", 
+    labs(title = paste0("Difference in housing prices before and after ", name, " line constructed"),
+         x = "Year", 
          y = "Annual change in housing prices (%)", 
          color = "Distance to station") +
     theme_minimal()
@@ -426,7 +430,10 @@ generateFigures <- function(name, stations, map, yr_built,
     geom_vline(aes(xintercept=yr_built)) +
     theme_minimal() +
     scale_y_continuous(limits = c(0, 6000)) +
-    labs(x="Year", y="Average census tract population", color = "Distance to station") +
+    labs(title = paste0("Difference in population before and after ", name, " line constructed"),
+         x = "Year", 
+         y = "Average census tract population", 
+         color = "Distance to station") +
     theme_minimal()
   
   #print(p1)
