@@ -112,80 +112,119 @@ pa_census_data <- map_df(silverline_counties, function(county) {
   )
 })
 
-get_acs_data <- function(counties, state, min_year, max_year) {
-  df <- map_df(silverline_counties, function(county) {
-    get_acs(
-      geography = "tract",
-      variables = "B01003_001", # Total population
-      state = state, # FIPS Code
-      county = county,
-      geometry = TRUE,
-      year = min_year
-    )
-  })
-   
-  for (i in (min_year+1):max_year) {
-    temp_df <- map_df(silverline_counties, function(county) {
-      get_acs(
-        geography = "tract",
-        variables = "B01003_001", # Total population
-        state = state, # FIPS Code
-        county = county,
-        geometry = TRUE,
-        year = i
-      )
-    }) 
-    
-    df <- bind_rows(df, temp_df)
+get_decennial_data <- function(counties, state, min_year, max_year) {
+  # Ensure valid decennial census years (e.g., 2000, 2010, 2020)
+  valid_years <- seq(min_year, max_year, by = 10)
+  
+  # Helper function to select the correct variable for each year
+  get_population_variable <- function(year) {
+    if (year == 2020) {
+      return("P1_001N") # Total population variable for 2020
+    } else {
+      return("P001001") # Total population variable for 2000 and 2010
+    }
   }
   
-  df %>%
-    select(-c(variable, moe)) %>%
-    rename(population = estimate)
+  # Initialize the data frame for decennial years
+  decennial_data <- map_df(valid_years, function(year) {
+    map_df(counties, function(county) {
+      get_decennial(
+        geography = "tract",
+        variables = get_population_variable(year),
+        state = state,
+        county = county,
+        geometry = TRUE,
+        year = year
+      )
+    }) %>%
+      mutate(year = year, population = value) # Add the year to each row
+  })
+  
+  # Generate intermediate years
+  all_years <- seq(min_year, max_year, by = 1) # All years in range
+  intermediate_years <- setdiff(all_years, valid_years) # Non-decennial years
+  
+  # Duplicate decennial data for intermediate years, setting population to NA
+  intermediate_data <- decennial_data %>%
+    filter(year == min(valid_years)) %>% # Use the earliest decennial year
+    select(-c(population, year)) %>% # Drop population and year
+    slice(rep(1:n(), length(intermediate_years))) %>% # Duplicate rows for each year
+    mutate(
+      year = rep(intermediate_years, each = nrow(.) / length(intermediate_years)),
+      population = NA_real_ # Set population to NA
+    )
+  
+  # Combine decennial data with intermediate data
+  bind_rows(decennial_data, intermediate_data) %>%
+    arrange(year) %>%
+    select(-c(variable, value))
 }
 
-pa_census_data <- get_acs_data(silverline_counties, "42", 2005, 2023)
+
+northstar_counties <- c("Anoka", "Sherburne", "Wright", "Hennepin")
+mn_census_data <- get_decennial_data(northstar_counties, "27", 2000, 2020)
+
+
+westside_counties <- c("Washington", "Yamhill", "Clackamas", "Marion", "Multnomah")
+or_census_data <- get_decennial_data(westside_counties, "41", 2000, 2020)
+
+
+wegostar_counties <- c("Davidson", "Sumner", "Wilson")
+tn_census_data <- get_decennial_data(wegostar_counties, "47", 2000, 2020)
+
+
+frontrunner_counties <- c("Salt Lake", "Utah", "Weber", "Morgan", "Davis")
+ut_census_data <- get_decennial_data(frontrunner_counties, "49", 2000, 2020)
+
+
+railrunner_counties <- c("Santa Fe", "Valencia", "Bernalillo", "Sandoval")
+nm_census_data <- get_decennial_data(railrunner_counties, "35", 2000, 2020)
+ 
+
+silverline_counties <- c("Allegheny")
+pa_census_data <- get_decennial_data(silverline_counties, "42", 2000, 2020)
+
 ```
 
 ```{r}
 # Left join on GEOID
 northstar_map <- mn_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(northstar_map["hpi2000"])
 
 # Left join on GEOID
 wegostar_map <- tn_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(wegostar_map["hpi2000"])
 
 # Left join on GEOID
 frontrunner_map <- ut_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(frontrunner_map["hpi2000"])
 
 # Left join on GEOID
 railrunner_map <- nm_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(railrunner_map["hpi2000"])
 
 # Left join on GEOID
 westside_map <- or_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(westside_map["hpi2000"])
 
 # Left join on GEOID
 silverline_map <- pa_census_data %>%
-  left_join(hpi_national, by = "GEOID")
+  left_join(hpi_national)
 
 # Test whether join was successful
 plot(silverline_map["hpi2000"])
@@ -282,7 +321,8 @@ silverline_stations <- data$s
 
 
 ```{r}
-generateFigures <- function(stations, map, yr_built, mid_distance=500, max_distance=10000) {
+generateFigures <- function(stations, map, yr_built, 
+                            min_distance=200, mid_distance = 800, max_distance=5000) {
   # Make sure stations and tracts have the same CRS
   if (st_crs(stations) != st_crs(map)) {
     stations <- st_transform(stations, st_crs(map))
@@ -296,7 +336,8 @@ generateFigures <- function(stations, map, yr_built, mid_distance=500, max_dista
   map <- map %>%
     mutate(
       proximity = case_when(
-        distance_to_station <= mid_distance ~ "Near station",
+        distance_to_station <= min_distance ~ "Adjacent to station",
+        distance_to_station <= mid_distance ~ "1/2 mile radius",
         distance_to_station <= max_distance ~ "Surrounding area"
       ),
       timing = case_when(
@@ -304,19 +345,21 @@ generateFigures <- function(stations, map, yr_built, mid_distance=500, max_dista
         year > yr_built ~ "After"
       ), 
       case = case_when(
-        distance_to_station <= 500 & year <= yr_built ~ "Near station, before",
-        distance_to_station <= 500 & year > yr_built ~ "Near station, after",
-        distance_to_station <= 10000 & year <= yr_built ~ "Surrounging area, before",
-        distance_to_station <= 10000 & year > yr_built ~ "Surrounding area, after"
+        distance_to_station <= mid_distance & year <= yr_built ~ "Near station, before",
+        distance_to_station <= mid_distance & year > yr_built ~ "Near station, after",
+        distance_to_station <= max_distance & year <= yr_built ~ "Surrounging area, before",
+        distance_to_station <= max_distance & year > yr_built ~ "Surrounding area, after"
       ),
     ) %>%
-    filter(!is.na(proximity)) # Remove tracts that are more than 10 km away
+    filter(!is.na(proximity)) %>% # Remove tracts that are outside the station area
+    mutate(proximity = factor(proximity, 
+           levels = c("Adjacent to station", "1/2 mile radius", "Surrounding area")))
   
   mapStats <- map %>%
     group_by(proximity, year) %>%
-    summarize(hpi = mean(hpi),
-              annual_change = mean(annual_change),
-              pop = mean()) %>%
+    summarize(hpi = mean(hpi, na.rm = T),
+              annual_change = mean(annual_change, na.rm = T),
+              pop = mean(population)) %>%
     ungroup()
   
   # Create a strip plot of HPI 
@@ -349,19 +392,27 @@ generateFigures <- function(stations, map, yr_built, mid_distance=500, max_dista
     theme_minimal()
   
   p3 <- ggplot(map) + 
-    geom_point(aes(x=year, y=hpi, color=proximity), alpha = 0.5)+
-    geom_line(aes(x=year, y=hpi, color = proximity), data = mapStats)
+    geom_point(aes(x=year, y=hpi, color=proximity, alpha = proximity)) +
+    geom_line(aes(x=year, y=hpi, color = proximity), data = mapStats) + 
+    geom_vline(aes(xintercept=yr_built)) + 
+    scale_alpha_manual(values = c("Adjacent to station" = 0.5, 
+                                  "1/2 mile radius" = 0.5, 
+                                  "Surrounding area" = 0.1)) +
+    labs(x="Year", y="Housing Price Index")
   
   p4 <- ggplot(mapStats) +
-    geom_line(aes(x=year, y=annual_change, color = proximity))
+    geom_line(aes(x=year, y=annual_change, color = proximity)) + 
+    geom_vline(aes(xintercept=yr_built)) +
+    labs(x="Year", y = "Annual change in housing prices (%)", color = "Distance to station")
   
   #print(p1)
   print(p2)
   print(p3)
   print(p4)
+  mapStats
 }
 
-generateFigures(northstar_stations, northstar_map, 2009, 500, 1000)
+mapStats <- generateFigures(northstar_stations, northstar_map, 2009, 200, 800, 5000)
 #generateFigures(wegostar_stations, wegostar_map, 2006)
 #generateFigures(frontrunner_stations, frontrunner_map, 2010)
 #generateFigures(railrunner_stations, railrunner_map, 2006)
