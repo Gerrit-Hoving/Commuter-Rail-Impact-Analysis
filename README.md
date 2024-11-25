@@ -1,5 +1,6 @@
-For a final project in AMST 215: Local Commuter Rail History, I analyzed the relationship between the construction of commuter rail stations and both property values and population. I found that there was not a noticable effect on either of these factors for the six lines studied. 
+For a final project in AMST 215: Local Commuter Rail History, I analyzed the relationship between the construction of commuter rail stations and both property values and population. I found that there was not a noticable effect on either of these factors for the six lines studied. This repository stores the code for replicating my analysis and generating similar figures, though it should be considered more of a rough script than a final product. 
 Data sources:
+
 Most rail alignment from the Bureau of Transportation Statistics 
 - https://geodata.bts.gov/datasets/985bf490e9fa462f80b1cb8ad5f6e139_0/
 Most station locations from the Bureau of Transportation Statistics
